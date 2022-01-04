@@ -6,29 +6,36 @@
 #    By: rezzahra <rezzahra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 17:54:07 by rezzahra          #+#    #+#              #
-#    Updated: 2022/01/04 15:53:32 by rezzahra         ###   ########.fr        #
+#    Updated: 2022/01/04 18:30:57 by rezzahra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ft_itoa_base.c ft_itoa.c specifier.c utils.c
+CC=cc
+SERVER=server
+CLIENT=client
+CLIENTSRC=client.c
+SERVERSRC=server.c
+CLIENTOBJ=$(CLIENTSRC:.c=.o)
+SERVEROBJ=$(SERVERSRC:.c=.o)
 
-OBJS = $(SRCS:.c=.o)
+FLAGS=-Wall -Wextra -Werror
 
-FLAGS = -Wall -Wextra -Werror
+all: $(SERVER) $(CLIENT)
 
-NAME = libftprintf.a
+bonus: all
 
-all: $(NAME)
-
-$(NAME): $(OBJS)
-
-%.o: %.c
-	gcc -c $(FLAGS) $< -o $@
-	ar rc $(NAME) $@
+%.o : %.c
+	$(CC) $(FLAGS) -c $< -o $@
+	
+$(CLIENT): $(CLIENTOBJ)
+	$(CC) $(FLAGS) $(CLIENTOBJ) -o $(CLIENT)
+	
+$(SERVER): $(SERVEROBJ)
+	$(CC) $(FLAGS) $(SERVEROBJ) -o $(SERVER)
 clean:
-	rm -f $(OBJS)
+	rm -f *.o
 
 fclean:	clean
-	rm -f $(NAME) 
+	rm -rf $(CLIENT) $(SERVER)
 
-re:	fclean $(NAME)
+re:	fclean all

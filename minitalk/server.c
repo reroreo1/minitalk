@@ -6,7 +6,7 @@
 /*   By: rezzahra <rezzahra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:55:36 by rezzahra          #+#    #+#             */
-/*   Updated: 2022/01/04 16:03:30 by rezzahra         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:55:21 by rezzahra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int main()
     pid = getpid();
     if(pid <= 0)
         return (0);
+    write(1,"PID :",5);
     ft_putnbr(pid);
     write(1, "\n", 1);
     signal(SIGUSR2,print);
     signal(SIGUSR1,print);
-    usleep(50);
     while(1)
         pause();
 }

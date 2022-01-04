@@ -6,10 +6,9 @@
 /*   By: rezzahra <rezzahra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:55:23 by rezzahra          #+#    #+#             */
-/*   Updated: 2022/01/04 16:08:39 by rezzahra         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:59:30 by rezzahra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <signal.h>
 #include <stdio.h>
@@ -53,7 +52,7 @@ void    processing(char c, int pid)
             kill(pid,SIGUSR2);
         else
             kill(pid,SIGUSR1);
-        usleep(100);
+        usleep(200);
         j--;
     }
 }
